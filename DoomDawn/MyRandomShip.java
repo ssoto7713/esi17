@@ -40,26 +40,26 @@ public class MyRandomShip extends Ship {
     //System.out.println("The Random Number This Time Is: "+rand2);
     //System.out.println("The Random Number for the correct one This Time Is: "+rand2);
     switch(rand2){
-        case 0: arena.move(this, Direction.NORTH);
+        case 0: this.move(arena, Direction.NORTH);
                 //System.out.println("R # was 0 So You Successfully Moved North\n");
                 //System.out.println("Ship Random's New Location Is: ("+shipLocation.getX()+","+shipLocation.getY()+")\n");
                 break;
-        case 1: arena.move(this, Direction.SOUTH);
+        case 1: this.move(arena, Direction.SOUTH);
                 //System.out.println("R # was 1 So You Successfully Moved South\n");
                 //System.out.println("Ship Random's New Location Is: ("+shipLocation.getX()+","+shipLocation.getY()+")\n");
                 break;        
-        case 2: arena.move(this, Direction.EAST);
+        case 2: this.move(arena, Direction.EAST);
                 //System.out.println("R # was 2 So You Successfully Moved East\n");
                 //System.out.println("Ship Random's New Location Is: ("+shipX+","+shipY+")\n");
                 break;
-        case 3: arena.move(this, Direction.WEST);
+        case 3: this.move(arena, Direction.WEST);
                 //System.out.println("R # was 3 So You Successfully Moved West\n");
                 //System.out.println("Ship Random's New Location Is: ("+shipX+","+shipY+")\n");
                 break;    
     }
     
     
-    List <Ship> ships1 = arena.getNearbyEnemies(this);
+    List <Ship> ships1 = this.getNearbyShips(arena);
     int size = ships1.size();
     //Ship target = ships.get(0);
     int arrl = 0;
@@ -74,7 +74,7 @@ public class MyRandomShip extends Ship {
         
         System.out.println("The nearby ship is: "+target+"\n");
         System.out.println("The Ship Is Located At: ("+shipX1+","+shipY1+")");
-        arena.fire(this, shipX1, shipY1);
+        this.fire(arena, shipX1, shipY1);
         System.out.println("The nearby ship: "+target+" Was attacked!!!!");
         
     }

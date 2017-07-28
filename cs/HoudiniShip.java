@@ -29,22 +29,22 @@ public class HoudiniShip extends EvilFleetShip {
     public void doTurn(Arena arena) {
         
         if (this.wasHit()) {
-            List<Ship> ships = arena.getNearbyEnemies(this);
+            List<Ship> ships = this.getNearbyShips(arena);
             
         } else {
             
         }
         
-        Coord location = this.getSelfCoord(arena);
+        Coord location = this.getCoord();
         if (location.getX() != 0) {
-            arena.move(this, Direction.WEST);
+            this.move(arena, Direction.WEST);
         } else if (location.getY() != 0) {
-            arena.move(this, Direction.NORTH);
+            this.move(arena, Direction.NORTH);
         }
-        List<Ship> ships = arena.getNearbyEnemies(this);
+        List<Ship> ships = this.getNearbyShips(arena);
         Ship target = ships.get(0);
         Coord coord = this.getShipCoord(arena, target);
-        arena.fire(this, coord.getX(), coord.getY());
+        this.fire(arena, coord.getX(), coord.getY());
         
         
         

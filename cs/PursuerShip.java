@@ -24,26 +24,26 @@ public class PursuerShip extends EvilFleetShip {
      */
     @Override
     public void doTurn(Arena arena) {
-        List<Ship> ships = arena.getNearbyEnemies(this);
+        List<Ship> ships = this.getNearbyShips(arena);
         int movesUsed = 0;
         while (ships.size() == 0 && movesUsed < this.getSpeed()) {
-            arena.move(this, this.getNextDirection(arena));
-            ships = arena.getNearbyEnemies(this);
+            this.move(arena, this.getNextDirection(arena));
+            ships = this.getNearbyShips(arena);
             movesUsed++;
         }
         if (ships.size() > 0)  {
             ships = EvilFleet.sortShipsByDistanceFrom(this, ships, arena);
             Ship target = ships.get(0);
-            Coord coord = this.getShipCoord(arena, target);
+            Coord coord = target.getCoord();
             for (int f = 0; f < this.getFirepower(); f++) {
-                arena.fire(this, coord.getX(), coord.getY());
+                this.fire(arena, coord.getX(), coord.getY());
             }
         }
     }
     
     protected Direction getNextDirection(Arena arena) {
         boolean preferX = arena.getXSize() >= arena.getYSize();
-        Coord loc = this.getSelfCoord(arena);
+        Coord loc = this.getCoord();
         boolean westEdge = loc.getX() <= this.getRange();
         boolean eastEdge = arena.getXSize() - loc.getX() <= this.getRange();
         boolean northEdge = loc.getY() <= this.getRange();

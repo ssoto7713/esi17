@@ -34,17 +34,17 @@ public class CustomShip extends Ship {
         //current location Greater than goal's x location
         //if (5<1)
         if(shipX <= goalX){
-            arena.move(this, Direction.EAST);
+            this.move(arena, Direction.EAST);
         }
         else if(shipX >= goalX){
-            arena.move(this, Direction.WEST);
+            this.move(arena, Direction.WEST);
         }
         
         if(shipY <= goalY){
-            arena.move(this, Direction.NORTH);
+            this.move(arena, Direction.NORTH);
         }
         else{
-            arena.move(this, Direction.SOUTH);
+            this.move(arena, Direction.SOUTH);
         }
         
     }
